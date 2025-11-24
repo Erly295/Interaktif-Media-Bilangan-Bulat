@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelajaran Bilangan Bulat ✨</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #E8D5F2 0%, #D4E4F7 50%, #E0C3FC 100%);
+            background-attachment: fixed;
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Cute floating elements background */
+        body::before {
+            content: '✨ 💜 🌸 ⭐ 💙 🦄 🌈 ☁️';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 2rem;
+            opacity: 0.1;
+            pointer-events: none;
+            word-spacing: 3rem;
+            line-height: 5rem;
+            animation: float 20s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #B794F4 0%, #9F7AEA 50%, #805AD5 100%);
+            box-shadow: 0 8px 32px rgba(149, 117, 205, 0.4);
+            padding: 1.2rem 2rem;
+            border-radius: 0 0 30px 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand::before {
+            content: '✨ ';
+        }
+
+        .navbar-brand::after {
+            content: ' ✨';
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05) rotate(-2deg);
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 600;
+            margin: 0 0.5rem;
+            padding: 0.6rem 1.2rem !important;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #805AD5;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(128, 90, 213, 0.2);
+            margin-bottom: 2rem !important;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::before {
+            content: '🌟';
+            margin-right: 10px;
+        }
+
+        h1::after {
+            content: '🌟';
+            margin-left: 10px;
+        }
+
+        .soal-card {
+            background: linear-gradient(135deg, #E9D8FD 0%, #D4E4F7 100%);
+            border: 3px solid #C4B5D4;
+            border-radius: 25px;
+            color: #805AD5;
+            font-weight: 700;
+            font-size: 1.3rem;
+            box-shadow: 0 8px 25px rgba(128, 90, 213, 0.2);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .soal-text {
+            font-size: 2.5em;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #9F7AEA 0%, #805AD5 100%);
+            border: none;
+            box-shadow: 0 4px 15px rgba(128, 90, 213, 0.4);
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .btn-info:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 6px 20px rgba(128, 90, 213, 0.6);
+            background: linear-gradient(135deg, #B794F4 0%, #9F7AEA 100%);
+        }
+
+        .canvas-card {
+            border: 4px solid #D4B5F0;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%);
+            box-shadow: 0 8px 32px rgba(128, 90, 213, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .canvas-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(128, 90, 213, 0.3);
+        }
+
+        .card-body {
+            padding: 2rem !important;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 50%, #E9D8FD 100%);
+        }
+
+        .garis-bilangan-container {
+            position: relative;
+            height: 250px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 50%, #E9D8FD 100%);
+            padding: 40px 0;
+            border-radius: 20px;
+        }
+
+        .garis-bilangan {
+            position: relative;
+            height: 100%;
+            min-width: 8000px; 
+            display: flex;
+            align-items: center;
+        }
+
+
+        .garis {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #B794F4, #9F7AEA, #B794F4);
+            transform: translateY(-50%);
+            box-shadow: 0 2px 8px rgba(159, 122, 234, 0.3);
+        }
+
+        .titik {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 3px;
+            height: 25px;
+            background: #9F7AEA;
+        }
+
+        .label-angka {
+            position: absolute;
+            top: 70%;
+            transform: translateX(-50%);
+            font-weight: 600;
+            color: #805AD5;
+            font-size: 1em;
+        }
+
+        .kelinci-wrapper {
+            position: absolute;
+            top: 15%;
+            z-index: 10;
+            text-align: center;
+            transform: translateX(-50%);
+        }
+
+        .kelinci-kecil {
+            transition: left 0.8s ease-in-out;
+        }
+
+        .kelinci-besar {
+            transition: none;
+        }
+
+        .panah-arah {
+            font-size: 1.5em;
+            display: block;
+            margin-bottom: -5px;
+        }
+
+        .kelinci-emoji {
+            font-size: 3.5em;
+            display: block;
+        }
+
+        .lompatan-jejak {
+            position: absolute;
+            top: 50%;
+            height: 50px;
+            border: 3px dashed #D4B5F0;
+            border-radius: 20px;
+            background: rgba(212, 181, 240, 0.2);
+            transform: translateY(-50%);
+            z-index: 5;
+        }
+
+        .kontrol-card {
+            border: 4px solid #D4B5F0;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%);
+            box-shadow: 0 8px 32px rgba(128, 90, 213, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .kontrol-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(128, 90, 213, 0.3);
+        }
+
+        .kontrol-item {
+            background: linear-gradient(135deg, #FAF5FF 0%, #E9D8FD 100%);
+            padding: 20px;
+            border-radius: 20px;
+            border: 3px solid #D4B5F0;
+            box-shadow: 0 4px 12px rgba(128, 90, 213, 0.1);
+        }
+
+        .kontrol-item label {
+            color: #6B46C1;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.15rem;
+            text-align: center;
+            display: block;
+        }
+
+        .form-control {
+            border: 3px solid #D4B5F0;
+            border-radius: 20px !important;
+            padding: 0.8rem 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #805AD5;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(128, 90, 213, 0.1);
+            text-align: center;
+            max-width: 150px;
+        }
+
+        .form-control:focus {
+            border-color: #9F7AEA;
+            box-shadow: 0 0 0 0.5rem rgba(159, 122, 234, 0.2), 0 8px 20px rgba(128, 90, 213, 0.2);
+            transform: scale(1.05);
+        }
+
+        .form-control::placeholder {
+            color: #C4B5D4;
+        }
+
+        .btn-plus-minus {
+            width: 60px;
+            height: 60px;
+            font-size: 2em;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #B794F4 0%, #9F7AEA 100%);
+            color: white;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(128, 90, 213, 0.4);
+        }
+
+        .btn-plus-minus:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 6px 20px rgba(128, 90, 213, 0.6);
+        }
+
+        .btn-plus-minus:active {
+            transform: scale(0.95);
+        }
+
+        .btn-arah {
+            padding: 15px 25px;
+            font-size: 1.1em;
+            border: 3px solid #D4B5F0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            flex: 1;
+            min-width: 140px;
+            box-shadow: 0 4px 12px rgba(128, 90, 213, 0.2);
+            background: linear-gradient(135deg, #FAF5FF 0%, #E9D8FD 100%);
+            color: #805AD5;
+        }
+
+        .btn-arah:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(128, 90, 213, 0.4);
+            background: linear-gradient(135deg, #E9D8FD 0%, #D4B5F0 100%);
+        }
+
+        .btn-arah.active {
+            border-color: #9F7AEA;
+            background: linear-gradient(135deg, #B794F4 0%, #9F7AEA 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(159, 122, 234, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .jawaban-card {
+            border: 4px solid #D4B5F0;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%);
+            box-shadow: 0 8px 32px rgba(128, 90, 213, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .jawaban-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(128, 90, 213, 0.3);
+        }
+
+        .input-jawaban {
+            font-size: 3em;
+            text-align: center;
+            padding: 15px;
+            border: 3px solid #D4B5F0;
+            border-radius: 20px;
+            width: 200px;
+            margin: 0 auto 20px;
+            font-weight: 700;
+            color: #805AD5;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(128, 90, 213, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .input-jawaban:focus {
+            border-color: #9F7AEA;
+            box-shadow: 0 0 0 0.5rem rgba(159, 122, 234, 0.2);
+            transform: scale(1.05);
+        }
+
+        .tombol-angka {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .btn-angka {
+            padding: 20px;
+            font-size: 1.5em;
+            border: 3px solid #D4B5F0;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #FAF5FF 0%, #E9D8FD 100%);
+            color: #805AD5;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(128, 90, 213, 0.2);
+        }
+
+        .btn-angka:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(128, 90, 213, 0.4);
+            background: linear-gradient(135deg, #E9D8FD 0%, #D4B5F0 100%);
+        }
+
+        .btn-angka:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-custom {
+            padding: 18px 40px;
+            font-size: 1.3em;
+            border: 3px solid #D4B5F0;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(128, 90, 213, 0.3);
+        }
+
+        .btn-soal-baru {
+            background: linear-gradient(135deg, #B794F4 0%, #9F7AEA 100%);
+            color: white;
+            border-color: #9F7AEA;
+        }
+
+        .btn-cek {
+            background: linear-gradient(135deg, #9F7AEA 0%, #805AD5 100%);
+            color: white;
+            border-color: #805AD5;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(128, 90, 213, 0.5);
+        }
+
+        .btn-custom:active {
+            transform: translateY(-2px);
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 25px;
+            border-radius: 25px;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-align: center;
+            display: none;
+            box-shadow: 0 8px 25px rgba(128, 90, 213, 0.3);
+            border: 3px solid;
+        }
+
+        .feedback.benar {
+            background: linear-gradient(135deg, #C6F6D5 0%, #9AE6B4 100%);
+            border-color: #68D391;
+            color: #22543D;
+            display: block;
+        }
+
+        .feedback.salah {
+            background: linear-gradient(135deg, #FED7D7 0%, #FEB2B2 100%);
+            border-color: #FC8181;
+            color: #742A2A;
+            display: block;
+        }
+
+        .feedback.peringatan {
+            background: linear-gradient(135deg, #FEEBC8 0%, #FBD38D 100%);
+            border-color: #F6AD55;
+            color: #7C2D12;
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .modal-content {
+            border-radius: 30px;
+            border: 4px solid #D4B5F0;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 100%);
+            box-shadow: 0 10px 40px rgba(128, 90, 213, 0.3);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #B794F4 0%, #9F7AEA 100%);
+            color: white;
+            border-radius: 26px 26px 0 0;
+            border-bottom: none;
+            padding: 1.5rem;
+        }
+
+        .modal-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .modal-title::before {
+            content: '💡 ';
+        }
+
+        .modal-body {
+            padding: 2rem;
+            color: #805AD5;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .modal-body b {
+            color: #6B46C1;
+            font-size: 1.15rem;
+        }
+
+        .btn-close {
+            background: white;
+            border-radius: 50%;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .btn-close:hover {
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .soal-text {
+                font-size: 1.8em;
+            }
+
+            .tombol-angka {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .btn-custom {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+
+            .form-control {
+                max-width: 100px;
+                font-size: 1rem;
+            }
+
+            .btn-plus-minus {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5em;
+            }
+
+            .btn-arah {
+                font-size: 0.95em;
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Pembelajaran Bilangan Bulat</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="background: white; border-radius: 15px">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Interaktif1.html">🧩 Interaktif Penjumlahan dan Pengurangan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Interaktif2.html">🕹️ Interaktif Perkalian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Interaktif4.html">🧩 Interaktif Pembagian</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5 content">
+        <div class="text-center">
+            <h1>Pembagian Bilangan Bulat</h1>
+        </div>
+
+        <div class="soal-card mb-4">
+            <div class="soal-text" id="soalText">12 ÷ 3 = ?</div>
+        </div>
+
+        <div class="input-group justify-content-center mb-4">
+            <button class="btn btn-info rounded-circle d-flex align-items-center justify-content-center" onclick="showInstructions()" title="Petunjuk" style="width: 50px; height: 50px">
+                💡
+            </button>
+        </div>
+
+        <div class="card canvas-card mb-4">
+            <div class="card-body p-0">
+                <div class="garis-bilangan-container" id="garisContainer">
+                    <div class="garis-bilangan" id="garisBilangan">
+                        <div class="garis"></div>
+                        <div class="kelinci-wrapper kelinci-besar" id="kelinciBesar">
+                            <span class="panah-arah" id="panahBesar">⭢</span>
+                            <span class="kelinci-emoji">🐰</span>
+                        </div>
+                        <div class="kelinci-wrapper kelinci-kecil" id="kelinciKecil">
+                            <span class="panah-arah" id="panahKecil">⭢</span>
+                            <span class="kelinci-emoji">🐇</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card kontrol-card mb-4">
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="kontrol-item">
+                            <label>🐰 Angka Kelinci Besar (Tujuan):</label>
+                            <div class="d-flex justify-content-center">
+                                <input type="number" class="form-control" id="angkaKelinciNum" value="" placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="kontrol-item">
+                            <label>📏 Kelipatan Tiap Lompatan:</label>
+                            <div class="d-flex justify-content-center gap-3 align-items-center flex-wrap">
+                                <button class="btn-plus-minus" id="btnKelipatanKurang">−</button>
+                                <input type="number" class="form-control" id="kelipatanNum" min="1" max="15" value="" placeholder="0" readonly>
+                                <button class="btn-plus-minus" id="btnKelipatanTambah">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="kontrol-item">
+                            <label>🐇 Banyak Lompatan Kelinci Kecil:</label>
+                            <div class="d-flex justify-content-center gap-3">
+                                <button class="btn-plus-minus" id="btnKurang">−</button>
+                                <button class="btn-plus-minus" id="btnTambah">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-2">
+                    <div class="col-md-6">
+                        <div class="kontrol-item">
+                            <label>⬅️ ➡️ Arah Kelinci Besar:</label>
+                            <div class="d-flex gap-2 flex-wrap justify-content-center">
+                                <button class="btn-arah btn-arah-besar-kiri" id="btnBesarKiri">← Kiri</button>
+                                <button class="btn-arah btn-arah-besar-kanan" id="btnBesarKanan">Kanan →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="kontrol-item">
+                            <label>⬅️ ➡️ Arah Kelinci Kecil:</label>
+                            <div class="d-flex gap-2 flex-wrap justify-content-center">
+                                <button class="btn-arah btn-arah-kecil-kiri" id="btnKecilKiri">← Kiri</button>
+                                <button class="btn-arah btn-arah-kecil-kanan" id="btnKecilKanan">Kanan →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card jawaban-card mb-4">
+            <div class="card-body text-center py-4">
+                <input type="text" class="input-jawaban" id="inputJawaban" readonly placeholder="?">
+                
+                <div class="tombol-angka">
+                    <button class="btn-angka" onclick="tambahAngka('1')">1</button>
+                    <button class="btn-angka" onclick="tambahAngka('2')">2</button>
+                    <button class="btn-angka" onclick="tambahAngka('3')">3</button>
+                    <button class="btn-angka" onclick="tambahAngka('4')">4</button>
+                    <button class="btn-angka" onclick="tambahAngka('5')">5</button>
+                    <button class="btn-angka" onclick="tambahAngka('6')">6</button>
+                    <button class="btn-angka" onclick="tambahAngka('7')">7</button>
+                    <button class="btn-angka" onclick="tambahAngka('8')">8</button>
+                    <button class="btn-angka" onclick="tambahAngka('9')">9</button>
+                    <button class="btn-angka" onclick="tambahAngka('0')">0</button>
+                    <button class="btn-angka" onclick="tambahAngka('-')">−</button>
+                    <button class="btn-angka" onclick="hapusAngka()">⌫</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-3 justify-content-center flex-wrap mb-4">
+            <button class="btn-custom btn-cek" onclick="cekJawaban()">✅ Cek Jawaban</button>
+            <button class="btn-custom btn-soal-baru" onclick="soalBaru()">🔁 Soal Baru</button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+    </div>
+
+    <div id="instructionModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Instruksi Penggunaan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <b>🐰 Kelinci Besar (Angka Tujuan)</b><br />
+                        Masukkan hasil pembagian dan pilih arahnya (kiri untuk negatif, kanan untuk positif).<br /><br />
+
+                        <b>📏 Kelipatan Tiap Lompatan</b><br />
+                        Tentukan seberapa jauh kelinci kecil melompat setiap kali (ini adalah pembagi).<br /><br />
+
+                        <b>🐇 Kelinci Kecil (Jumlah Lompatan)</b><br />
+                        Tambah/kurangi jumlah lompatan untuk mencapai kelinci besar.<br /><br />
+
+                        <b>⬅️ ➡️ Arah Kelinci Kecil</b><br />
+                        Tentukan arah lompatan kelinci kecil.<br /><br />
+
+                        <i>Contoh: 12 ÷ 3 = 4<br />
+                        Kelinci besar di 12 (kanan), kelipatan 3, kelinci kecil melompat 4 kali ke kanan.</i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let soalSekarang = { pembilang: 12, pembagi: 3 };
+        let jawabanBenar = 0;
+        let jumlahLompatanKecil = 0;
+        let arahBesar = null;
+        let arahKecil = null;
+        let kelipatanDipilih = false;
+        
+        const CENTER = 8000;
+        const JARAK_PER_ANGKA = 80;
+
+        function showInstructions() {
+            const modal = new bootstrap.Modal(document.getElementById('instructionModal'));
+            modal.show();
+        }
+
+        function validasiInputSebelumLompatan() {
+            const feedback = document.getElementById('feedback');
+            const angkaKelinci = document.getElementById('angkaKelinciNum').value;
+            const kelipatan = document.getElementById('kelipatanNum').value;
+            
+            let pesanError = [];
+            
+            if (!angkaKelinci || angkaKelinci === '') {
+                pesanError.push('Angka Kelinci Besar (Tujuan)');
+            }
+            
+            if (arahBesar === null) {
+                pesanError.push('Arah Kelinci Besar');
+            }
+            
+            if (!kelipatan || kelipatan === '') {
+                pesanError.push('Kelipatan Tiap Lompatan');
+            }
+            
+            if (arahKecil === null) {
+                pesanError.push('Arah Kelinci Kecil');
+            }
+            
+            if (pesanError.length > 0) {
+                tampilkanFeedback('⚠️ Lengkapi dulu: ' + pesanError.join(', ') + '!', 'peringatan');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function tampilkanFeedback(pesan, jenis) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = pesan;
+            feedback.className = 'feedback ' + jenis;
+            
+            if (jenis === 'peringatan') {
+                setTimeout(() => {
+                    feedback.textContent = '';
+                    feedback.className = 'feedback';
+                }, 3000);
+            }
+        }
+
+        document.getElementById('btnKelipatanTambah').addEventListener('click', function() {
+            const input = document.getElementById('kelipatanNum');
+            let nilai = input.value === '' ? 0 : parseInt(input.value);
+            if (nilai < 15) {
+                input.value = nilai + 1;
+                kelipatanDipilih = true;
+                gerakkanKelinciKecil();
+            }
+        });
+
+        document.getElementById('btnKelipatanKurang').addEventListener('click', function() {
+            const input = document.getElementById('kelipatanNum');
+            let nilai = input.value === '' ? 1 : parseInt(input.value);
+            if (nilai > 1) {
+                input.value = nilai - 1;
+                kelipatanDipilih = true;
+                gerakkanKelinciKecil();
+            } else if (nilai === 1) {
+                input.value = '';
+                kelipatanDipilih = false;
+                gerakkanKelinciKecil();
+            }
+        });
+
+        document.getElementById('btnTambah').addEventListener('click', function() {
+            if (!validasiInputSebelumLompatan()) {
+                return;
+            }
+            jumlahLompatanKecil++;
+            gerakkanKelinciKecil();
+        });
+
+        document.getElementById('btnKurang').addEventListener('click', function() {
+            if (!validasiInputSebelumLompatan()) {
+                return;
+            }
+            jumlahLompatanKecil--;
+            gerakkanKelinciKecil();
+        });
+
+        document.getElementById('btnBesarKiri').addEventListener('click', function() {
+            arahBesar = 'kiri';
+            this.classList.add('active');
+            document.getElementById('btnBesarKanan').classList.remove('active');
+            document.getElementById('panahBesar').textContent = '⭠';
+            posisikanKelinciBesar();
+        });
+
+        document.getElementById('btnBesarKanan').addEventListener('click', function() {
+            arahBesar = 'kanan';
+            this.classList.add('active');
+            document.getElementById('btnBesarKiri').classList.remove('active');
+            document.getElementById('panahBesar').textContent = '⭢';
+            posisikanKelinciBesar();
+        });
+
+        document.getElementById('btnKecilKiri').addEventListener('click', function() {
+            arahKecil = 'kiri';
+            this.classList.add('active');
+            document.getElementById('btnKecilKanan').classList.remove('active');
+            document.getElementById('panahKecil').textContent = '⭠';
+            gerakkanKelinciKecil();
+        });
+
+        document.getElementById('btnKecilKanan').addEventListener('click', function() {
+            arahKecil = 'kanan';
+            this.classList.add('active');
+            document.getElementById('btnKecilKiri').classList.remove('active');
+            document.getElementById('panahKecil').textContent = '⭢';
+            gerakkanKelinciKecil();
+        });
+
+        document.getElementById('angkaKelinciNum').addEventListener('input', function() {
+            buatGarisBilangan();
+            posisikanKelinciBesar();
+        });
+
+        function buatGarisBilangan() {
+            const garisBilangan = document.getElementById('garisBilangan');
+            
+            // Bersihkan titik dan label lama
+            const titikLama = garisBilangan.querySelectorAll('.titik, .label-angka');
+            titikLama.forEach(el => el.remove());
+
+            const minAngka = -100;
+            const maxAngka = 100;
+            const TOTAL_ANGKA = maxAngka - minAngka;  
+            const width = TOTAL_ANGKA * JARAK_PER_ANGKA; 
+
+            document.getElementById("garisBilangan").style.minWidth = width + "px";
+
+
+            for (let i = minAngka; i <= maxAngka; i++) {
+                const titik = document.createElement('div');
+                titik.className = 'titik';
+                titik.style.left = (CENTER + i * JARAK_PER_ANGKA) + 'px';
+                garisBilangan.appendChild(titik);
+
+                // Tampilkan label setiap kelipatan 5
+                if (i % 5 === 0) {
+                    const label = document.createElement('div');
+                    label.className = 'label-angka';
+                    label.textContent = i;
+                    label.style.left = (CENTER + i * JARAK_PER_ANGKA) + 'px';
+                    garisBilangan.appendChild(label);
+                }
+            }
+        }
+
+
+        function posisikanKelinciBesar() {
+            const angkaKelinci = parseInt(document.getElementById('angkaKelinciNum').value);
+            
+            if (!angkaKelinci || arahBesar === null) {
+                document.getElementById('kelinciBesar').style.display = 'none';
+                return;
+            }
+            
+            document.getElementById('kelinciBesar').style.display = 'block';
+            const kelinciBesar = document.getElementById('kelinciBesar');
+            
+            const multiplier = arahBesar === 'kanan' ? 1 : -1;
+            const posisi = CENTER + (angkaKelinci * multiplier * JARAK_PER_ANGKA);
+            
+            kelinciBesar.style.left = posisi + 'px';
+            
+            setTimeout(() => {
+                const container = document.getElementById('garisContainer');
+                container.scrollLeft = posisi - container.offsetWidth / 2;
+            }, 50);
+        }
+
+        function gerakkanKelinciKecil() {
+            const kelipatanInput = document.getElementById('kelipatanNum').value;
+            
+            if (kelipatanInput === '' || arahKecil === null) {
+                document.getElementById('kelinciKecil').style.display = 'none';
+                return;
+            }
+            
+            document.getElementById('kelinciKecil').style.display = 'block';
+            const kelipatan = parseInt(kelipatanInput);
+            const kelinciKecil = document.getElementById('kelinciKecil');
+            const garisBilangan = document.getElementById('garisBilangan');
+            
+            const jejakLama = garisBilangan.querySelectorAll('.lompatan-jejak');
+            jejakLama.forEach(el => el.remove());
+            
+            const multiplier = arahKecil === 'kanan' ? 1 : -1;
+            const totalJarak = jumlahLompatanKecil * kelipatan * multiplier;
+            const posisi = CENTER + (totalJarak * JARAK_PER_ANGKA);
+            
+            kelinciKecil.style.left = posisi + 'px';
+            
+            if (jumlahLompatanKecil !== 0) {
+                const absLompatan = Math.abs(jumlahLompatanKecil);
+                
+                for (let i = 0; i < absLompatan; i++) {
+                    const jejak = document.createElement('div');
+                    jejak.className = 'lompatan-jejak';
+                    
+                    const mulai = i * kelipatan * multiplier;
+                    const posisiMulai = CENTER + (mulai * JARAK_PER_ANGKA);
+                    const jarakPixel = kelipatan * JARAK_PER_ANGKA;
+                    
+                    jejak.style.left = posisiMulai + 'px';
+                    jejak.style.width = jarakPixel + 'px';
+                    
+                    garisBilangan.appendChild(jejak);
+                }
+            }
+        }
+
+        function soalBaru() {
+            const pembagi = Math.floor(Math.random() * 9) + 2;
+            const hasilBagi = Math.floor(Math.random() * 19) - 9;
+            const pembilang = pembagi * hasilBagi;
+
+            soalSekarang = { pembilang, pembagi };
+            jawabanBenar = hasilBagi;
+
+            document.getElementById('soalText').textContent = `${pembilang} ÷ ${pembagi} = ?`;
+            document.getElementById('inputJawaban').value = '';
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = '';
+            feedback.className = 'feedback';
+            document.getElementById('angkaKelinciNum').value = '';
+            document.getElementById('kelipatanNum').value = '';
+            
+            jumlahLompatanKecil = 0;
+            arahBesar = null;
+            arahKecil = null;
+            kelipatanDipilih = false;
+            
+            document.getElementById('btnBesarKanan').classList.remove('active');
+            document.getElementById('btnBesarKiri').classList.remove('active');
+            document.getElementById('btnKecilKanan').classList.remove('active');
+            document.getElementById('btnKecilKiri').classList.remove('active');
+            document.getElementById('panahBesar').textContent = '⭢';
+            document.getElementById('panahKecil').textContent = '⭢';
+
+            const jejakLama = document.querySelectorAll('.lompatan-jejak');
+            jejakLama.forEach(el => el.remove());
+            
+            buatGarisBilangan();
+            
+            document.getElementById('kelinciBesar').style.display = 'none';
+            document.getElementById('kelinciKecil').style.display = 'none';
+        }
+
+        function tambahAngka(angka) {
+            const input = document.getElementById('inputJawaban');
+            if (angka === '-') {
+                if (input.value === '' || input.value === '-') {
+                    input.value = '-';
+                }
+            } else {
+                if (input.value === '0') {
+                    input.value = angka;
+                } else {
+                    input.value += angka;
+                }
+            }
+        }
+
+        function hapusAngka() {
+            const input = document.getElementById('inputJawaban');
+            input.value = input.value.slice(0, -1);
+        }
+
+        function cekJawaban() {
+            const inputValue = document.getElementById('inputJawaban').value.trim();
+
+            if (inputValue === '' || inputValue === '-') {
+                tampilkanFeedback('❌ Masukkan jawaban terlebih dahulu ya! 🐰', 'salah');
+                return;
+            }
+
+            const jawaban = parseInt(inputValue);
+            
+            if (isNaN(jawaban)) {
+                tampilkanFeedback('❌ Masukkan jawaban yang valid ya! 🐰', 'salah');
+                return;
+            }
+
+            const hasilBenar = Math.floor(soalSekarang.pembilang / soalSekarang.pembagi);
+
+            if (jawaban === hasilBenar) {
+                tampilkanFeedback('✅ Bagus! Jawaban kamu benar 🎉', 'benar');
+            } else {
+                tampilkanFeedback(`❌ Belum tepat, coba lagi ya 🐰`, 'salah');
+            }
+        }
+
+        buatGarisBilangan();
+        document.getElementById('kelinciBesar').style.display = 'none';
+        document.getElementById('kelinciKecil').style.display = 'none';
+    </script>
+</body>
+</html>
